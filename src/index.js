@@ -1,4 +1,3 @@
-
 import menuElement from './menu.json';
 import template from './templates/template.hbs';
 import './styles.css';
@@ -7,7 +6,7 @@ import './styles.css';
 const menu = document.querySelector('.js-menu');
 
 function buildMenu(array) {
-    const markup = array.map(post => template(post)).join('');
+    const markup = template(array);
     menu.insertAdjacentHTML('beforeend', markup);
 }
 
@@ -24,6 +23,8 @@ const btnChange = document.querySelector('.js-switch-input');
 
 btnChange.addEventListener('change', setClassList);
 btnChange.addEventListener('change', setLocalStorage);
+
+body.classList.add(localStorage.getItem('theme') === null ? Theme.LIGHT : localStorage.getItem('theme'));
 
 function setClassList(e) {
     const check = btnChange.checked;
